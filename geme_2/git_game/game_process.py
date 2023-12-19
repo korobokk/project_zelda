@@ -1,7 +1,7 @@
 from game_classes import *
 
 
-def GameProcess(screen, game_map, main_character):
+def game_process(screen, game_map, main_character):
     """make the main game process
 
     :param screen:
@@ -145,7 +145,7 @@ def start_zel_game():
     result = 0
     while running:
         if gameplay:
-            gameplay, result = GameProcess(screen, play_map, main_character)
+            gameplay, result = game_process(screen, play_map, main_character)
         else:
             running = False
         pygame.display.update()
@@ -154,5 +154,4 @@ def start_zel_game():
                 running = False
         clock.tick(16)
     pygame.quit()
-
     return result

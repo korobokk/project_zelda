@@ -215,3 +215,6 @@ class RankingsTable:
         """Destroys reg menu"""
 
         self.root.destroy()
+
+
+ZelMainMenu()

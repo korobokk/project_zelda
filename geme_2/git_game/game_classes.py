@@ -49,7 +49,7 @@ class Character(object):
         :param animations_right: list[pygame.image()...]
         :param animations_down: list[pygame.image()...]
         :param animations_up: list[pygame.image()...]
-        :param animations_default: dict('left': pygame.image(), 'right': pygame.image(),'top': pygame.image(), 'down': pygame.image())
+        :param animations_default: dict
         :param pos_x: int
         :param pos_y: int
         :param heart_im: pygame.image()
@@ -158,7 +158,6 @@ class Character(object):
         :param game_map:
         :return:
         """
-        pygame.draw.rect(screen, (255, 255, 0), (self.hitbox_x, self.hitbox_y, self.width, self.height), 2)
         keys = pygame.key.get_pressed()
         self.status(screen)
         if keys[pygame.K_a] and self.hitbox_x >= game_map.block_down_x:
@@ -272,7 +271,6 @@ class Game_map(object):
         screen.blit(self.maps[0], (0, 0))
         for weapon in self.weapons:
             weapon[0].animations_sword(weapon[1], weapon[2], screen)
-            pygame.draw.rect(screen, (0, 255, 0), (weapon[1], weapon[2], weapon[0].width, weapon[0].height), 2)
 
     def draw_map2(self, screen):
         """draw second map with their properties
@@ -431,8 +429,6 @@ class Ghost(object):
         else:
             self.pos_x += self.speed
             self.hitbox_movement()
-        rect1 = pygame.Rect(self.hitbox_x, self.hitbox_y, self.width, self.height)
-        pygame.draw.rect(screen, (0, 255, 255), rect1, 2)
         screen.blit(self.ghost_image, (self.pos_x, self.pos_y))
 
     def collide_w_hero(self, hero):
@@ -499,8 +495,7 @@ class Sword:
                 self.height = 130
                 screen.blit(self.sword_anim_top[self.current_animation], (self.pos_x, self.pos_y))
                 self.current_animation += 1
-                rect = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
-                pygame.draw.rect(screen, (0, 255, 0), rect, 2)
+
             case 'left':
                 self.pos_x = pos_x - 135
                 self.pos_y = pos_y
@@ -508,8 +503,7 @@ class Sword:
                 self.height = 200
                 screen.blit(self.sword_anim_left[self.current_animation], (self.pos_x, self.pos_y))
                 self.current_animation += 1
-                rect = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
-                pygame.draw.rect(screen, (0, 255, 0), rect, 2)
+
             case 'right':
                 self.pos_x = pos_x + 100
                 self.pos_y = pos_y
@@ -517,8 +511,7 @@ class Sword:
                 self.height = 200
                 screen.blit(self.sword_anim_right[self.current_animation], (self.pos_x - 75, self.pos_y))
                 self.current_animation += 1
-                rect = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
-                pygame.draw.rect(screen, (0, 255, 0), rect, 2)
+
             case 'down':
                 self.pos_x = pos_x - 30
                 self.pos_y = pos_y + 150
@@ -526,8 +519,6 @@ class Sword:
                 self.height = 130
                 screen.blit(self.sword_anim_down[self.current_animation], (self.pos_x, self.pos_y - 100))
                 self.current_animation += 1
-                rect = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
-                pygame.draw.rect(screen, (0, 255, 0), rect, 2)
 
     def hit_stop(self):
         """stops sword's animation
