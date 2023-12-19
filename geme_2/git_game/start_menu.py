@@ -4,7 +4,16 @@ import game_process
 
 
 class ZelMainMenu:
-    def __init__(self, reg_name='Denis', result=135) -> None:
+    """Creates instance off class that represents main menu"""
+
+    def __init__(self, reg_name='kto', result=135) -> None:
+        """
+
+        :param reg_name: nickname of a player
+        :type reg_name: str
+        :param result: score from game
+        :type result: int"""
+
         self.reg_name = reg_name
         self.result = result
 
@@ -18,7 +27,7 @@ class ZelMainMenu:
         self.button_register = tk.Button(self.root, text="Register", font=('Arial', 20), command=self.registration)
         self.button_register.place(relx=0.1, y=50)
 
-        if reg_name != '':
+        if self.reg_name != '':
             self.login_label = tk.Label(self.root, text=f'Logged in as {reg_name}', font=('Arial', 15), bg='pink')
             self.login_label.place(relx=0.1, y=130)
             if self.result != -1:
@@ -41,24 +50,44 @@ class ZelMainMenu:
         self.root.mainloop()
 
     def rank_table_show(self):
+        """Creates rankings table instance and exits menu"""
+
         self.cancel_menu()
         RankingsTable(self.reg_name, self.result)
 
     def registration(self):
+        """Creates registration window instance"""
+
         self.cancel_menu()
         RegWindow(self.reg_name, self.result)
 
     def start_game(self):
+        """Starts game instance and exits menu, then creates menu with nickname and result parameters
+
+        :return:
+        """
+
         nickname = self.reg_name
         self.cancel_menu()
         ZelMainMenu(nickname, game_process.start_zel_game())
 
     def cancel_menu(self):
+        """Destroys main menu instance"""
+
         self.root.destroy()
 
 
 class RegWindow:
+    """Creates instance that represents registration window"""
+
     def __init__(self, reg_name='', result=-1) -> None:
+        """
+
+        :param reg_name: nickname of a player
+        :type reg_name: str
+        :param result: score from game
+        :type result: int"""
+
         self.warn_label = None
         self.user_data = None
 
@@ -102,13 +131,18 @@ class RegWindow:
         self.root.mainloop()
 
     def to_menu(self):
+        """Closes reg menu and creates main menu"""
+
         self.cancel_registration()
         ZelMainMenu(self.reg_name, self.result)
 
     def cancel_registration(self):
+        """Destroys reg menu instance"""
         self.root.destroy()
 
     def regClick(self):
+        """Creates entry based on input, or creates request message to fill all gaps"""
+
         self.user_data_l = [self.name_entry.get(), self.email_entry.get(), self.password_entry.get()]
         if self.warnstate and all([dat != '' for dat in self.user_data_l]):
             self.warn_label.destroy()
@@ -125,13 +159,22 @@ class RegWindow:
             if self.warnstate:
                 pass
             else:
-                self.warn_label = tk.Label(self.root, text="Error", font=('Arial', 16), bg='red')
+                self.warn_label = tk.Label(self.root, text="Fill all gaps", font=('Arial', 16), bg='red')
                 self.warn_label.pack(pady=10)
                 self.warnstate = True
 
 
 class RankingsTable:
+    """Creates instance that represents rankings table"""
+
     def __init__(self, reg_name='', result=-1) -> None:
+        """
+
+        :param reg_name: nickname of a player
+        :type reg_name: str
+        :param result: score from game
+        :type result: int"""
+
         self.reg_name = reg_name
         self.result = result
 
@@ -143,9 +186,9 @@ class RankingsTable:
         self.label.pack(pady=50)
 
         self.table = ttk.Treeview(self.root, columns=('first', 'second', 'third'), show='headings')
-        self.table.heading('first', text='hmm')
-        self.table.heading('second', text='ok')
-        self.table.heading('third', text='so?')
+        self.table.heading('first', text='Number')
+        self.table.heading('second', text='Nickname')
+        self.table.heading('third', text='Score')
         self.table.pack()
 
         self.player_data = 'JOhn,110;Egor,50;Egdfor,55'
@@ -163,11 +206,12 @@ class RankingsTable:
         self.root.mainloop()
 
     def to_menu(self):
+        """Closes reg menu and creates main menu"""
+
         self.cancel_rankings()
         ZelMainMenu(self.reg_name, self.result)
 
     def cancel_rankings(self):
+        """Destroys reg menu"""
+
         self.root.destroy()
-
-
-ZelMainMenu()

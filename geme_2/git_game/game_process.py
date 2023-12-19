@@ -2,6 +2,13 @@ from game_classes import *
 
 
 def GameProcess(screen, game_map, main_character):
+    """make the main game process
+
+    :param screen:
+    :param game_map:
+    :param main_character:
+    :rtype: tuple(bool, int)
+    """
     match game_map.current_map:
         case 1:
             game_map.change_map_borders()
@@ -60,6 +67,10 @@ def GameProcess(screen, game_map, main_character):
 
 
 def start_zel_game():
+    """start the game
+
+    :rtype: int
+    """
     gameplay = True
     running = True
     clock = pygame.time.Clock()
