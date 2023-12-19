@@ -122,7 +122,7 @@ class Character(object):
             rect2 = pygame.Rect(ghost.hitbox_x, ghost.hitbox_y, ghost.width, ghost.height)
             if pygame.Rect.colliderect(rect1, rect2):
                 ghost.health -= 1
-                if ghost.health == 0:
+                if ghost.health <= 0:
                     if ghost.boss:
                         if self.health < 5:
                             self.health += 1

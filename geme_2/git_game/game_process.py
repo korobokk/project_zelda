@@ -44,8 +44,8 @@ def game_process(screen, game_map, main_character):
             game_map.draw_map2(screen)
             game_map.ghosts_spawn_x_min = 700
             game_map.ghosts_spawn_x_max = 950
-            game_map.ghosts_spawn_y_min = 150
-            game_map.ghosts_spawn_y_max = 500
+            game_map.ghosts_spawn_y_min = 100
+            game_map.ghosts_spawn_y_max = 750
             for ghost in game_map.ghosts:
                 ghost.movement(main_character.hitbox_x, main_character.hitbox_y, screen)
                 if ghost.collide_w_hero(main_character):
