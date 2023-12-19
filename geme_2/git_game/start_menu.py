@@ -6,7 +6,7 @@ import game_process
 class ZelMainMenu:
     """Creates instance off class that represents main menu"""
 
-    def __init__(self, reg_name='kto', result=135) -> None:
+    def __init__(self, reg_name='', result=0) -> None:
         """
 
         :param reg_name: nickname of a player

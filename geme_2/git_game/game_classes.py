@@ -136,8 +136,8 @@ class Character(object):
         :param screen:
         :return:
         """
-        status_x = 50
-        status_y = 50
+        status_x = 200
+        status_y = 100
         for i in range(self.health):
             screen.blit(self.heart_im, (status_x, status_y))
             status_x += 50
@@ -344,17 +344,6 @@ class Game_map(object):
             hero.get_weapon(sword[0])
             self.weapons.remove(sword)
 
-    def change_ghost_spawn_position(self):
-        """change ghost spawn position depend on game_map
-
-        :return:
-        """
-        match self.current_map:
-            case 1:
-                self.ghosts_spawn_position = (random.randint(700, 1200), 1200)
-            case 2:
-                self.ghosts_spawn_position = (random.randint(700, 1200), 1200)
-
     def change_map_borders(self):
         """change map borders depend on game_map
 
@@ -362,12 +351,12 @@ class Game_map(object):
         """
         match self.current_map:
             case 1:
-                self.block_top_y = 950
+                self.block_top_y = 850
                 self.block_top_x = 1500
                 self.block_down_y = 50
                 self.block_down_x = 350
             case 2:
-                self.block_top_y = 950
+                self.block_top_y = 850
                 self.block_top_x = 950
                 self.block_down_y = 50
                 self.block_down_x = 700
