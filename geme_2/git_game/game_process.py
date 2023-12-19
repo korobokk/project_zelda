@@ -1,5 +1,6 @@
 from game_classes import *
 
+
 def GameProcess(screen, game_map, main_character):
     match game_map.current_map:
         case 1:
@@ -52,7 +53,7 @@ def GameProcess(screen, game_map, main_character):
                 for i in range(game_map.ghosts_at_map):
                     game_map.ghosts_spawn(main_character)
     if main_character.health <= 0:
-        return (False, main_character.killing_ghosts)
+        return False, main_character.killing_ghosts
     main_character.movement(screen, game_map)
 
     return True, 0

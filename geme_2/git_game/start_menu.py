@@ -4,7 +4,7 @@ import game_process
 
 
 class ZelMainMenu:
-    def __init__(self, reg_name = 'Denis', result = 135) -> None:
+    def __init__(self, reg_name='Denis', result=135) -> None:
         self.reg_name = reg_name
         self.result = result
 
@@ -19,13 +19,14 @@ class ZelMainMenu:
         self.button_register.place(relx=0.1, y=50)
 
         if reg_name != '':
-            self.login_label = tk.Label(self.root, text= f'Logged in as {reg_name}', font=('Arial', 15), bg = 'pink')
+            self.login_label = tk.Label(self.root, text=f'Logged in as {reg_name}', font=('Arial', 15), bg='pink')
             self.login_label.place(relx=0.1, y=130)
             if self.result != -1:
-                self.result_label = tk.Label(self.root, text= f'Max result: {self.result}', font=('Arial', 12), bg = 'lightyellow')
+                self.result_label = tk.Label(self.root, text=f'Max result: {self.result}', font=('Arial', 12),
+                                             bg='lightyellow')
                 self.result_label.place(relx=0.1, y=160)
         else:
-            self.login_label = tk.Label(self.root, text= 'Not logged in', font=('Arial', 15), bg = 'pink')
+            self.login_label = tk.Label(self.root, text='Not logged in', font=('Arial', 15), bg='pink')
             self.login_label.place(relx=0.1, y=130)
 
         self.button_game = tk.Button(self.root, text="Start game", font=('Arial', 20), command=self.start_game)
@@ -57,7 +58,7 @@ class ZelMainMenu:
 
 
 class RegWindow:
-    def __init__(self, reg_name = '', result = -1) -> None:
+    def __init__(self, reg_name='', result=-1) -> None:
         self.warn_label = None
         self.user_data = None
 
@@ -130,7 +131,7 @@ class RegWindow:
 
 
 class RankingsTable:
-    def __init__(self, reg_name = '', result = -1) -> None:
+    def __init__(self, reg_name='', result=-1) -> None:
         self.reg_name = reg_name
         self.result = result
 
@@ -153,7 +154,7 @@ class RankingsTable:
         self.player_data = sorted(self.player_data, key=lambda x: -int(x[1]))
 
         for i in range(len(self.player_data)):
-            show_data = (i+1, self.player_data[i][0], self.player_data[i][1])
+            show_data = (i + 1, self.player_data[i][0], self.player_data[i][1])
             self.table.insert(parent='', index=i, values=show_data)
 
         self.button_tomenu = tk.Button(self.root, text="Back to menu", font=('Arial', 20), command=self.to_menu)
@@ -167,4 +168,6 @@ class RankingsTable:
 
     def cancel_rankings(self):
         self.root.destroy()
+
+
 ZelMainMenu()
