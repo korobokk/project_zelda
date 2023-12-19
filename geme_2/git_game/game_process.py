@@ -55,7 +55,7 @@ def GameProcess(screen, game_map, main_character):
         return (False, main_character.killing_ghosts)
     main_character.movement(screen, game_map)
 
-    return (True, 0)
+    return True, 0
 
 
 def start_zel_game():
