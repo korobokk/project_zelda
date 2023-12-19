@@ -1,6 +1,5 @@
 from game_classes import *
 
-
 def GameProcess(screen, game_map, main_character):
     match game_map.current_map:
         case 1:
@@ -27,6 +26,7 @@ def GameProcess(screen, game_map, main_character):
             if game_map.ghosts_at_map == 4:
                 main_character.pos_x = 700
                 main_character.pos_y = 540
+                main_character.hitbox_movement()
                 game_map.current_map = 2
                 game_map.ghosts = []
                 game_map.ghosts_count = 0
@@ -51,11 +51,11 @@ def GameProcess(screen, game_map, main_character):
                     game_map.boss_spawn(main_character)
                 for i in range(game_map.ghosts_at_map):
                     game_map.ghosts_spawn(main_character)
-    if main_character.health == 0:
-        return False, main_character.killing_ghosts
+    if main_character.health <= 0:
+        return (False, main_character.killing_ghosts)
     main_character.movement(screen, game_map)
 
-    return True, 0
+    return (True, 0)
 
 
 def start_zel_game():
@@ -142,4 +142,5 @@ def start_zel_game():
                 running = False
         clock.tick(16)
     pygame.quit()
+
     return result

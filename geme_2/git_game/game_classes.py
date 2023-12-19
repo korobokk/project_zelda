@@ -68,7 +68,7 @@ class Character(object):
             if pygame.Rect.colliderect(rect1, rect2):
                 ghost.health -= 1
                 if ghost.health == 0:
-                    if ghost.boss:
+                    if ghost.boss == True:
                         if self.health < 5:
                             self.health += 1
                     self.killing_ghosts += 1
